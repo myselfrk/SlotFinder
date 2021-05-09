@@ -102,11 +102,11 @@ function Home() {
     const date = selectedDate.split("-").reverse().join("-");
     const centres = await fetchCenterList({ pincode, date });
     if (centres.length === 0) {
+      setLooking(false);
+      clearInterval(intervalId);
       setTimeout(() => {
         alert("Couldn't find any center.");
       }, 500);
-      setLooking(false);
-      clearInterval(intervalId);
     } else {
       startedLooking(centres, age);
     }
