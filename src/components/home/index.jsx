@@ -140,7 +140,9 @@ function Home() {
 
   return (
     <div className="col-6 mt-5 mx-auto">
-      <h6 className="mb-3">Made with ❤ by Rohit</h6>
+      <h6 className="mb-3 d-flex justify-content-center">
+        Made with ❤ by Rohit
+      </h6>
       <form onSubmit={handleSubmit}>
         <Input
           label="Age"
