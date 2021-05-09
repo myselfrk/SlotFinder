@@ -92,9 +92,9 @@ function Home() {
     e.preventDefault();
     setLooking(true);
     const interval_Id = setInterval(() => {
-      setIntervalId(interval_Id);
       startLooking();
     }, 5000);
+    setIntervalId(interval_Id);
   };
 
   const startLooking = async () => {
@@ -104,6 +104,7 @@ function Home() {
     if (centres.length === 0) {
       alert("Couldn't find any center.");
       setLooking(false);
+      clearInterval(intervalId);
     } else {
       startedLooking(centres, age);
     }
@@ -139,6 +140,7 @@ function Home() {
 
   return (
     <div className="col-6 mt-5 mx-auto">
+      <h6 className="mb-3">Made with ❤ by Rohit</h6>
       <form onSubmit={handleSubmit}>
         <Input
           label="Age"
