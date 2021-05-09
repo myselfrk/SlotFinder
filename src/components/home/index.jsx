@@ -103,7 +103,7 @@ function Home() {
     const centres = await fetchCenterList({ pincode, date });
     if (centres.length === 0) {
       setLooking(false);
-      clearInterval(intervalId);
+      clearInterval((prev) => prev);
       setTimeout(() => {
         alert("Couldn't find any center.");
       }, 500);
@@ -136,7 +136,7 @@ function Home() {
 
   const handleStop = () => {
     setLooking(false);
-    clearInterval(intervalId);
+    clearInterval((intervalId) => intervalId);
     sound.pause();
   };
 
