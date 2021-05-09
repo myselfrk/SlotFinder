@@ -160,6 +160,7 @@ function Home() {
           type="date"
           value={data.date}
           onChange={handleChange}
+          placeholder="Enter the PIN-Code"
           disabled={looking}
         />
         <Input
