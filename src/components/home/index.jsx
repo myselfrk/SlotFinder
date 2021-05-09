@@ -92,27 +92,27 @@ function Home() {
     e.preventDefault();
     setLooking(true);
     const interval_Id = setInterval(() => {
-      startLooking();
+      startLooking(interval_Id);
     }, 5000);
     setIntervalId(interval_Id);
   };
 
-  const startLooking = async () => {
+  const startLooking = async (interval_Id) => {
     const { pincode, date: selectedDate, age } = data;
     const date = selectedDate.split("-").reverse().join("-");
     const centres = await fetchCenterList({ pincode, date });
     if (centres.length === 0) {
       setLooking(false);
-      clearInterval((prev) => prev);
+      clearInterval(interval_Id);
       setTimeout(() => {
         alert("Couldn't find any center.");
       }, 500);
     } else {
-      startedLooking(centres, age);
+      startedLooking(centres, age, interval_Id);
     }
   };
 
-  const startedLooking = (centres, age) => {
+  const startedLooking = (centres, age, interval_Id) => {
     const foundCentres = [];
 
     for (let i = 0; i < centres.length; ++i) {
@@ -127,16 +127,16 @@ function Home() {
     if (foundCentres.length > 0) {
       sound.play();
       setFound(true);
+      clearInterval(interval_Id);
       setTimeout(() => {
         alert(foundCentres.join(" , "));
-        handleStop();
       }, 500);
     }
   };
 
   const handleStop = () => {
     setLooking(false);
-    clearInterval((intervalId) => intervalId);
+    clearInterval(intervalId);
     sound.pause();
   };
 
