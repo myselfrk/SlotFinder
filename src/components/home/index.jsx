@@ -160,7 +160,6 @@ function Home() {
           type="date"
           value={data.date}
           onChange={handleChange}
-          placeholder="Enter the PIN-Code"
           disabled={looking}
         />
         <Input
@@ -170,6 +169,7 @@ function Home() {
           value={data.pincode}
           onChange={handleChange}
           error={errors.pincode}
+          placeholder="Enter the PIN-Code"
           disabled={looking}
         />
 
